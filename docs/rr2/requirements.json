@@ -1,0 +1,270 @@
+{
+  "project": "electronic-queue",
+  "rr1_commit": "408e1b8bba8036013b1a76cd841f2d5b3c7e37bb",
+  "functional": [
+    {
+      "id": "F01",
+      "requirement": "Выдать талон на доступную услугу с номером и временем",
+      "acceptance": "Номер уникален для услуги и даты; повтор одного ключа запроса не создаёт второй талон"
+    },
+    {
+      "id": "F02",
+      "requirement": "Показывать вызванный номер и окно на табло",
+      "acceptance": "После вызова видны номер, окно и состояние; ФИО не выводится"
+    },
+    {
+      "id": "F03",
+      "requirement": "Вызывать следующего для услуг выбранного окна",
+      "acceptance": "Выбран самый ранний waiting; занятое окно не получает второй активный талон"
+    },
+    {
+      "id": "F04",
+      "requirement": "Сохранять историю обслуживания",
+      "acceptance": "Создание и каждый переход имеют время и запись события; история не удаляется при новом дне"
+    },
+    {
+      "id": "F05",
+      "requirement": "Рассчитывать статистику ожидания",
+      "acceptance": "Среднее рассчитывается по завершённым талонам; пустая выборка отображается без деления на ноль"
+    },
+    {
+      "id": "F06",
+      "requirement": "Управлять доступностью услуг и назначением окон",
+      "acceptance": "Новые талоны на закрытую услугу не выдаются; действующая история остаётся доступной"
+    },
+    {
+      "id": "F07",
+      "requirement": "Разделять роли посетителя, оператора и администратора",
+      "acceptance": "Сервер отклоняет действие вне полномочий независимо от видимости кнопки"
+    },
+    {
+      "id": "F08",
+      "requirement": "Выгружать обезличенные показатели",
+      "acceptance": "CSV содержит период, услуги, времена и статусы; не содержит паролей и ФИО посетителей"
+    },
+    {
+      "id": "F09",
+      "requirement": "Отменять ожидающий талон по праву владения",
+      "acceptance": "waiting переходит в cancelled; чужой или уже вызванный талон не отменяется посетителем"
+    },
+    {
+      "id": "F10",
+      "requirement": "Обрабатывать повторный вызов и неявку",
+      "acceptance": "Повтор сохраняет called; no_show доступен после двух минут, событие фиксируется"
+    }
+  ],
+  "nonfunctional": [
+    {
+      "id": "N01",
+      "requirement": "Выдача и вызов — не более 2 с для 95 процентов запросов",
+      "acceptance": "Нагрузочный стенд, 30 сессий, до 10 окон, 1000 талонов в день"
+    },
+    {
+      "id": "N02",
+      "requirement": "Обновление табло — не более 3 с после фиксации вызова",
+      "acceptance": "Сопоставление времени COMMIT и обновления клиента; опрос раз в 1 с"
+    },
+    {
+      "id": "N03",
+      "requirement": "Доступность за часы работы — не ниже 99,5 процента",
+      "acceptance": "Мониторинг успешных операций за месяц пилота"
+    },
+    {
+      "id": "N04",
+      "requirement": "RPO не более 24 ч, RTO не более 60 мин",
+      "acceptance": "Ежедневная копия и контрольное восстановление на отдельном стенде"
+    },
+    {
+      "id": "N05",
+      "requirement": "Отсутствие двойного вызова и повторной выдачи",
+      "acceptance": "Параллельные запросы к двум окнам и повтор ключа выдачи"
+    },
+    {
+      "id": "N06",
+      "requirement": "Доступ с клавиатуры; контраст текста не ниже 4,5 к 1",
+      "acceptance": "Ручной проход Tab и проверка цветов; крупные кнопки терминала от 44 px"
+    },
+    {
+      "id": "N07",
+      "requirement": "Время в UTC; рабочая дата в Europe/Moscow",
+      "acceptance": "Тест границы суток и синхронизации часов, допустимое расхождение до 5 с"
+    },
+    {
+      "id": "N08",
+      "requirement": "Воспроизводимое развёртывание и журналирование",
+      "acceptance": "Зафиксированные зависимости, миграции БД, инструкция запуска и аудит"
+    }
+  ],
+  "methodical_coverage": [
+    {
+      "point": 1,
+      "report_section": "Введение; 1.1",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 2,
+      "report_section": "1.2",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 3,
+      "report_section": "1.3",
+      "artifacts": [
+        "requirements.json"
+      ]
+    },
+    {
+      "point": 4,
+      "report_section": "2.1",
+      "artifacts": [
+        "01_bpmn",
+        "02_idef_context",
+        "03_idef_a0"
+      ]
+    },
+    {
+      "point": 5,
+      "report_section": "2.2",
+      "artifacts": [
+        "04_components"
+      ]
+    },
+    {
+      "point": 6,
+      "report_section": "2.3",
+      "artifacts": [
+        "05_er",
+        "06_er_support",
+        "schema.sql"
+      ]
+    },
+    {
+      "point": 7,
+      "report_section": "2.4",
+      "artifacts": [
+        "07_classes",
+        "08_classes_services"
+      ]
+    },
+    {
+      "point": 8,
+      "report_section": "2.5",
+      "artifacts": [
+        "09_states"
+      ]
+    },
+    {
+      "point": 9,
+      "report_section": "3.1",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 10,
+      "report_section": "3.2",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 11,
+      "report_section": "3.3",
+      "artifacts": [
+        "10_sequence_issue",
+        "11_sequence_call"
+      ]
+    },
+    {
+      "point": 12,
+      "report_section": "3.4",
+      "artifacts": [
+        "12_activity"
+      ]
+    },
+    {
+      "point": 13,
+      "report_section": "3.5",
+      "artifacts": [
+        "prototype/rr2",
+        "screenshots"
+      ]
+    },
+    {
+      "point": 14,
+      "report_section": "4.1",
+      "artifacts": [
+        "openapi.json"
+      ]
+    },
+    {
+      "point": 15,
+      "report_section": "4.2",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 16,
+      "report_section": "4.3",
+      "artifacts": [
+        "test-plan.md"
+      ]
+    },
+    {
+      "point": 17,
+      "report_section": "4.4",
+      "artifacts": [
+        "13_deployment"
+      ]
+    },
+    {
+      "point": 18,
+      "report_section": "4.5",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 19,
+      "report_section": "4.6",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 20,
+      "report_section": "5.1",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 21,
+      "report_section": "5.2",
+      "artifacts": [
+        "report.md"
+      ]
+    },
+    {
+      "point": 22,
+      "report_section": "5.3",
+      "artifacts": [
+        "report.md"
+      ]
+    }
+  ],
+  "states": [
+    "waiting",
+    "called",
+    "in_service",
+    "completed",
+    "no_show",
+    "cancelled"
+  ],
+  "publication": "Обязательна; локальный пакет не является подтверждением публикации"
+}

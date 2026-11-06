@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="ru">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Электронная очередь</title><link rel="stylesheet" href="style.css">
+<body>
+<header><div class="brand"><span class="logo">ЭО</span><div><strong>Электронная очередь</strong><small>Учебный прототип · Демонстрационные данные</small></div></div><span id="clock"></span></header>
+<div class="layout"><aside><p class="nav-label">РАБОЧИЕ ЭКРАНЫ</p><nav aria-label="Экраны системы"><button data-view="visitor" aria-current="page">Получить талон</button><button data-view="display">Информационное табло</button><button data-view="operator">Рабочее место оператора</button><button data-view="admin">Администрирование</button><button data-view="stats">Статистика</button></nav><div class="aside-note">Выбор экрана показывает разные роли. Проверка прав доступа выполняется сервером в проектируемой системе.</div><button id="reset" class="secondary">Восстановить пример</button></aside>
+<main id="main" tabindex="-1"></main></div>
+<div id="notice" role="status" aria-live="polite"></div>
+<script src="app.js"></script></body></html>
